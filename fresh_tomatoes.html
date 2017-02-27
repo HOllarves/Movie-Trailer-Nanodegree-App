@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Fresh Tomatoes!</title>
+
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <style type="text/css" media="screen">
+        @font-face {
+            font-family: OstrichSans;
+            src: url("fonts/ostrich-sans-bold.woff");
+        }
+        #trailer .modal-dialog {
+            margin-top: 200px;
+            width: 1200px;
+            height: 600px;
+        }
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        #trailer-video {
+            width: 100%;
+            height: 100%;
+        }
+        .site-title{
+            text-align:center
+        }
+        .tile {
+            margin-bottom: 10px;
+            padding-top: 20px;
+        }
+        .tile:hover {
+            cursor: pointer;
+        }
+        .tile img {
+            transition: border 0.8s ease;
+        }
+        .tile img:hover {
+            border: 10px solid #000;
+        }
+        .scale-media {
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: white;
+        }
+        .navbar {
+            border: none;
+        }
+        .navbar-header {
+            float: left;
+            padding: 15px;
+            text-align: center;
+            width: 100%;
+            padding-top: 25px;
+            background-color: #000;
+        }
+        .navbar-brand{
+            font-family: OstrichSans;
+            float: none;
+            font-size: 50px;
+            line-height: 55px;
+            color: #799;
+        }
+        .popular-header {
+            font-family: OstrichSans;
+            font-size: 80px;
+        }
+        .movie-container {
+            position: relative;
+        }
+        .movies-header {
+            position: absolute;
+            top: 5%;
+            width: 25%;
+            line-height: 80px;
+            padding: 0;
+            left: -25%;
+        }
+        .show-container {
+            position: relative;
+        }
+        .series-header {
+            position: absolute;
+            width: 25%;
+            top: 0;
+            left: -20%;
+            line-height: 80px;
+        }
+        hr {
+            margin-top: 35px;
+            margin-bottom: 50px;
+            border: 0;
+            border-top: 10px dashed #000;
+        }
+        body {
+            position: relative;
+            background-color: #FFF11B;
+        }
+        .disclaimer {
+            position: absolute;
+            right: 5px;
+            bottom: 5px;
+        }
+        .little-popcorn {
+            width: 150px;
+            position: absolute;
+            top: 10px;
+            left: 30px;
+        }
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.tile', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+        // Animate in the movies when the page loads
+        $(document).ready(function () {
+          $('.movie-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+    </script>
+</head>
+
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="scale-media" id="trailer-video-container">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Page Content -->
+    <div class="navbar navbar-default" role="navigation">
+      <div class="navbar-header">
+        <img class="little-popcorn" src="imgs/little-popcorn.png">
+        <a class="navbar-brand site-title" href="#">Fresh Tomatoes Trailers!</a>
+      </div>
+    </div>
+    <div class="movie-container container">
+        
+<div class="col-md-6 col-lg-4 tile movie-tile text-center" data-trailer-youtube-id="V0zGJIy50ys" data-toggle="modal" data-target="#trailer">
+    <img src="http://image.tmdb.org/t/p/w342//wnVHDbGz7RvDAHFAsVVT88FxhrP.jpg" width="220" height="342">
+    <h2>Fifty Shades Darker</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 tile movie-tile text-center" data-trailer-youtube-id="FkAndUJpyX0" data-toggle="modal" data-target="#trailer">
+    <img src="http://image.tmdb.org/t/p/w342//bbxtz5V0vvnTDA2qWbiiRC77Ok9.jpg" width="220" height="342">
+    <h2>Rings</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 tile movie-tile text-center" data-trailer-youtube-id="bvu-zlR5A8Q" data-toggle="modal" data-target="#trailer">
+    <img src="http://image.tmdb.org/t/p/w342//jjBgi2r5cRt36xF6iNUEhzscEcb.jpg" width="220" height="342">
+    <h2>Jurassic World</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 tile movie-tile text-center" data-trailer-youtube-id="rbCYloWrR7A" data-toggle="modal" data-target="#trailer">
+    <img src="http://image.tmdb.org/t/p/w342//4PiiNGXj1KENTmCBHeN6Mskj2Fq.jpg" width="220" height="342">
+    <h2>Doctor Strange</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 tile movie-tile text-center" data-trailer-youtube-id="gwqSi_ToNPs" data-toggle="modal" data-target="#trailer">
+    <img src="http://image.tmdb.org/t/p/w342//hLudzvGfpi6JlwUnsNhXwKKg4j.jpg" width="220" height="342">
+    <h2>Arrival</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 tile movie-tile text-center" data-trailer-youtube-id="eVSAZv4oqW8" data-toggle="modal" data-target="#trailer">
+    <img src="http://image.tmdb.org/t/p/w342//z09QAf8WbZncbitewNk6lKYMZsh.jpg" width="220" height="342">
+    <h2>Finding Dory</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 tile movie-tile text-center" data-trailer-youtube-id="i-80SGWfEjM" data-toggle="modal" data-target="#trailer">
+    <img src="http://image.tmdb.org/t/p/w342//WLQN5aiQG8wc9SeKwixW7pAR8K.jpg" width="220" height="342">
+    <h2>The Secret Life of Pets</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 tile movie-tile text-center" data-trailer-youtube-id="RllJtOw0USI" data-toggle="modal" data-target="#trailer">
+    <img src="http://image.tmdb.org/t/p/w342//5vHssUeVe25bMrof1HyaPyWgaP.jpg" width="220" height="342">
+    <h2>John Wick</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 tile movie-tile text-center" data-trailer-youtube-id="Rt2LHkSwdPQ" data-toggle="modal" data-target="#trailer">
+    <img src="http://image.tmdb.org/t/p/w342//nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg" width="220" height="342">
+    <h2>Interstellar</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 tile movie-tile text-center" data-trailer-youtube-id="NAHw4jFKfxQ" data-toggle="modal" data-target="#trailer">
+    <img src="http://image.tmdb.org/t/p/w342//rXMWOZiCt6eMX22jWuTOSdQ98bY.jpg" width="220" height="342">
+    <h2>Split</h2>
+</div>
+
+        <div class="movies-header popular-header">Most Popular Movies: (Top 10) </div>
+    </div>
+    <hr>
+    <div class="show-container container">
+        
+<div class="col-md-6 col-lg-4 tile show-tile text-center" data-trailer-youtube-id="R1v0uFms68U" data-toggle="modal" data-target="#trailer">
+    <img src="http://image.tmdb.org/t/p/w342//vxuoMW6YBt6UsxvMfRNwRl9LtWS.jpg" width="220" height="342">
+    <h2>The Walking Dead</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 tile show-tile text-center" data-trailer-youtube-id="Mx7xTF8fKz4" data-toggle="modal" data-target="#trailer">
+    <img src="http://image.tmdb.org/t/p/w342//lUFK7ElGCk9kVEryDJHICeNdmd1.jpg" width="220" height="342">
+    <h2>The Flash</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 tile show-tile text-center" data-trailer-youtube-id="ItRtfwYtr_4" data-toggle="modal" data-target="#trailer">
+    <img src="http://image.tmdb.org/t/p/w342//wQoosZYg9FqPrmI4zeCLRdEbqAB.jpg" width="220" height="342">
+    <h2>The Big Bang Theory</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 tile show-tile text-center" data-trailer-youtube-id="BpJYNVhGf1s" data-toggle="modal" data-target="#trailer">
+    <img src="http://image.tmdb.org/t/p/w342//jIhL6mlT7AblhbHJgEoiBIOUVl1.jpg" width="220" height="342">
+    <h2>Game of Thrones</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 tile show-tile text-center" data-trailer-youtube-id="4kmA86_hnbo" data-toggle="modal" data-target="#trailer">
+    <img src="http://image.tmdb.org/t/p/w342//3iFm6Kz7iYoFaEcj4fLyZHAmTQA.jpg" width="220" height="342">
+    <h2>Supernatural</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 tile show-tile text-center" data-trailer-youtube-id="6QGbsNIZ-uo" data-toggle="modal" data-target="#trailer">
+    <img src="http://image.tmdb.org/t/p/w342//igDhbYQTvact1SbNDbzoeiFBGda.jpg" width="220" height="342">
+    <h2>Doctor Who</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 tile show-tile text-center" data-trailer-youtube-id="6QGbsNIZ-uo" data-toggle="modal" data-target="#trailer">
+    <img src="http://image.tmdb.org/t/p/w342//jZn7dEHRRjXcT43D9GMHxzASDef.jpg" width="220" height="342">
+    <h2>The Vampire Diaries</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 tile show-tile text-center" data-trailer-youtube-id="bxEK3mpvQes" data-toggle="modal" data-target="#trailer">
+    <img src="http://image.tmdb.org/t/p/w342//aI4bobthe7OORg4s2zjm0f0FdC1.jpg" width="220" height="342">
+    <h2>Grey's Anatomy</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 tile show-tile text-center" data-trailer-youtube-id="r9QvSry2-CM" data-toggle="modal" data-target="#trailer">
+    <img src="http://image.tmdb.org/t/p/w342//hNEC8dcLXeQllaP8JfCHJSPOMhk.jpg" width="220" height="342">
+    <h2>Taboo</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 tile show-tile text-center" data-trailer-youtube-id="DX1iplQQJTo" data-toggle="modal" data-target="#trailer">
+    <img src="http://image.tmdb.org/t/p/w342//yTZQkSsxUFJZJe67IenRM0AEklc.jpg" width="220" height="342">
+    <h2>The Simpsons</h2>
+</div>
+
+        <div class="series-header popular-header">Most Popular Shows: (Top 10) </div>
+    </div>
+    <span class="disclaimer"> Data fetched from <a href="https://www.themoviedb.org/" target="_blank"> The Movie DB </a></span>
+  </body>
+</html>
